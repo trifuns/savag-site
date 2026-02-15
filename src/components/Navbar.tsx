@@ -162,7 +162,7 @@ export default function Navbar() {
                   Topdon Master
                 </Link>
 
-                <div className="mt-2 grid grid-cols-2 gap-3">
+                <div className="mt-2 grid grid-cols-2 gap-3 items-center">
                   <a
                     href="tel:+38269976007"
                     className="rounded-2xl bg-white/10 px-4 py-3 text-center text-sm hover:bg-white/15"
@@ -170,13 +170,15 @@ export default function Navbar() {
                   >
                     Pozovi
                   </a>
-                  <Link
-                    href="/kontakt"
-                    className="rounded-2xl bg-brand-red px-4 py-3 text-center text-sm font-medium hover:opacity-90"
-                    onClick={() => setOpen(false)}
-                  >
-                    Pošalji upit
-                  </Link>
+                  <a
+					  href="https://www.instagram.com/autoservis.savic?igsh=MWtuODlpamVqZTA4cw%3D%3D&utm_source=qr"
+					  target="_blank"
+					  rel="noreferrer"
+					  aria-label="Instagram"
+					  className="group inline-flex h-9 w-9 place-self-center items-center justify-center rounded-full border border-white/15 bg-white/5 backdrop-blur hover:bg-white/10 transition"
+					>
+					  <Instagram className="h-8 w-8 text-white/80 group-hover:text-white" />
+					</a>
                 </div>
               </div>
             </div>
