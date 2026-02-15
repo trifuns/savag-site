@@ -1,11 +1,13 @@
-import type { NextConfig } from "next";
-
 const repo = "savag-site";
 const isProd = process.env.NODE_ENV === "production";
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: "export",
   images: { unoptimized: true },
+
+  // Helps GitHub Pages routing (optional but recommended)
+  trailingSlash: true,
 
   ...(isProd
     ? {
