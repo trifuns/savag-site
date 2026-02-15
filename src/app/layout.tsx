@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+
 const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata: Metadata = {

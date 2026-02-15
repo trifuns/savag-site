@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import HeroCarousel from "@/components/HeroCarousel";
+
 
 import {
   Wrench,
@@ -36,51 +38,12 @@ function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
 export default function Home() {
   return (
     <div className="space-y-16">
-      {/* HERO */}
-      <section className="relative overflow-hidden rounded-[32px] ">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/10 to-transparent" />
-		  <div className="relative z-10 px-8 py-12 md:px-12 md:py-2">
-          
-
-          <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl md:py-4">
-			  Servis i Fabrička Dijagnostika 
-		  </h1>
-
-			<div className="mt-5 flex flex-wrap items-center gap-4">
-			  <img src={`${base}/brands/vw.svg`} alt="Volkswagen" className="h-10 md:h-12 w-auto object-contain" />
-			  <img src={`${base}/brands/audi.svg`} alt="Audi" className="h-10 md:h-12 w-auto object-contain" />
-              <img src={`${base}/brands/seat.svg`} alt="SEAT" className="h-10 md:h-12 w-auto object-contain" />
-              <img src={`${base}/brands/skoda.svg`} alt="Škoda" className="h-10 md:h-12 w-auto object-contain" />
-			</div>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={phoneHref}
-              className="rounded-2xl bg-brand-red px-6 py-3 text-center font-medium hover:opacity-90"
-            >
-              Pozovi {phoneDisplay}
-            </a>
-
-            <Link
-              href="/kontakt"
-              className="rounded-2xl bg-white/10 px-6 py-3 text-center font-medium hover:bg-white/15"
-            >
-              Pošalji upit
-            </Link>
-          </div>
-
-          <div className="mt-8 grid gap-3 text-sm text-white/80 md:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-4">
-              <div className="text-white">Radno vrijeme</div>
-              <div>Ponedjeljak – Petak: 09h – 17h</div>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-4">
-              <div className="text-white">Adresa</div>
-              <div>Pohorska 17, Podgorica</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* HERO */}		  
+      <div className="-mt-10">
+        <HeroCarousel />
+      </div>
+	  
+      
 
       {/* USLUGE */}
       <section id="usluge">
