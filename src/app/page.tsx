@@ -39,22 +39,22 @@ export default function Home() {
 		  </h1>
 
 			<div className="mt-5 flex flex-wrap items-center gap-4">
-			  <img
+			  <Image
 				src="/brands/vw.svg"
 				alt="Volkswagen"
 				className="h-10 md:h-12 w-auto object-contain"
 			  />
-			  <img
+			  <Image
 				src="/brands/audi.svg"
 				alt="Audi"
 				className="h-10 md:h-12 w-auto object-contain"
 			  />
-			  <img
+			  <Image
 				src="/brands/seat.svg"
 				alt="SEAT"
 				className="h-10 md:h-12 w-auto object-contain"
 			  />
-			  <img
+			  <Image
 				src="/brands/skoda.svg"
 				alt="Škoda"
 				className="h-10 md:h-12 w-auto object-contain"
