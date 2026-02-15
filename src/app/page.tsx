@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const phoneDisplay = "+382 69 976 007";
 const phoneHref = "tel:+38269976007";
