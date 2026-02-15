@@ -41,9 +41,7 @@ export default function Home() {
       {/* HERO */}		  
       <div className="-mt-10">
         <HeroCarousel />
-      </div>
-	  
-      
+      </div> 
 
       {/* USLUGE */}
       <section id="usluge">
@@ -240,7 +238,7 @@ export default function Home() {
 		</section>
 		
       {/* DONJI CTA */}
-      <section className="rounded-3xl border border-white/10 bg-gradient-to-r from-brand-red/20 to-white/5 p-8">
+      <section className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-[2px] md:p-10">
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
           <div>
             <h2 className="text-2xl font-semibold">Spremni da zakažete?</h2>

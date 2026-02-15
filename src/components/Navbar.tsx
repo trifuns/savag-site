@@ -62,6 +62,9 @@ export default function Navbar() {
           <Link className="text-sm text-white/80 hover:text-white" href="/kontakt">
             Kontakt
           </Link>
+		  <Link className="text-sm text-white/80 hover:text-white" href="/topdon-master">
+            Topdon Master
+          </Link>
         </nav>
 
         {/* Desktop actions */}
@@ -129,12 +132,26 @@ export default function Navbar() {
                 >
                   O nama
                 </Link>
+				<Link
+                  href="/galerija"
+                  className="rounded-2xl bg-white/10 px-4 py-3 text-sm hover:bg-white/15"
+                  onClick={() => setOpen(false)}
+                >
+                  Galerija
+                </Link>
                 <Link
                   href="/kontakt"
                   className="rounded-2xl bg-white/10 px-4 py-3 text-sm hover:bg-white/15"
                   onClick={() => setOpen(false)}
                 >
                   Kontakt
+                </Link>
+				<Link
+                  href="/topdon-master"
+                  className="rounded-2xl bg-white/10 px-4 py-3 text-sm hover:bg-white/15"
+                  onClick={() => setOpen(false)}
+                >
+                  Topdon Master
                 </Link>
 
                 <div className="mt-2 grid grid-cols-2 gap-3">
