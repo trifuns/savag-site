@@ -1,4 +1,6 @@
 import Link from "next/link";
+const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 
 export default function ONamaPage() {
   return (
@@ -19,22 +21,22 @@ export default function ONamaPage() {
           {/* Brand logos row (optional) */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4 opacity-95">
             <img
-              src="/brands/vw.svg"
+              src={`${base}/brands/vw.svg`}
               alt="Volkswagen"
               className="h-10 md:h-12 w-auto object-contain"
             />
             <img
-              src="/brands/audi.svg"
+              src={`${base}/brands/audi.svg`}
               alt="Audi"
               className="h-10 md:h-12 w-auto object-contain"
             />
             <img
-              src="/brands/seat.svg"
+              src={`${base}/brands/seat.svg`}
               alt="SEAT"
               className="h-10 md:h-12 w-auto object-contain"
             />
             <img
-              src="/brands/skoda.svg"
+              src={`${base}/brands/skoda.svg`}
               alt="Škoda"
               className="h-10 md:h-12 w-auto object-contain"
             />

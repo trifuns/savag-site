@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
@@ -33,7 +35,7 @@ export default function Navbar() {
           onClick={() => setOpen(false)}
         >
           <img
-			src="/logo_transparent.png"
+			src={`${base}/logo_transparent.png`}
 			alt="Auto Servis Savić logo"
 		    className="h-24 md:h-28 w-auto object-contain"
 		  />

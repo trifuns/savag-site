@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata: Metadata = {
   title: "Auto Servis Savić — Podgorica",
@@ -32,7 +33,7 @@ export default function RootLayout({
 	<body
 	  className="min-h-screen bg-fixed bg-center bg-cover"
 	  style={{
-		backgroundImage: "url('/hero.jpg')",
+		backgroundImage: `url('${base}/main_bg.jpg')`,
 	  }}
 	>
 	  {/* Global overlay za čitljivost */}
