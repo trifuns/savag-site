@@ -56,6 +56,9 @@ export default function Navbar() {
           <Link className="text-sm text-white/80 hover:text-white" href="/o-nama">
             O nama
           </Link>
+		  <Link className="text-sm text-white/80 hover:text-white" href="/galerija">
+            Galerija
+          </Link>
           <Link className="text-sm text-white/80 hover:text-white" href="/kontakt">
             Kontakt
           </Link>
