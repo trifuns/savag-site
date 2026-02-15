@@ -1,3 +1,5 @@
+import { Instagram } from "lucide-react";
+
 export default function KontaktPage() {
   return (
     <div className="space-y-14">
@@ -27,6 +29,15 @@ export default function KontaktPage() {
             >
               WhatsApp
             </a>
+			<a
+			href="https://www.instagram.com/autoservis.savic?igsh=MWtuODlpamVqZTA4cw%3D%3D&utm_source=qr"
+			target="_blank"
+			rel="noreferrer"
+			aria-label="Instagram"
+			className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 backdrop-blur hover:bg-white/10 transition"
+	    	>
+			  <Instagram className="h-8 w-8 text-white/80 group-hover:text-white" />
+		    </a>
           </div>
         </div>
       </section>

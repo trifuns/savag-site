@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Instagram } from "lucide-react";
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -26,7 +27,7 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 bg-black/20 backdrop-blur-[2px]">
+    <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-[2px]">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 md:py-4">
         {/* Logo / Brand */}
         <Link
@@ -75,12 +76,19 @@ export default function Navbar() {
           >
             Pozovi
           </a>
-          <Link
-            href="/kontakt"
-            className="rounded-2xl bg-brand-red px-4 py-2 text-sm font-medium hover:opacity-90"
-          >
-            Pošalji upit
-          </Link>
+		  <div className="flex items-center gap-3">
+		  {/* Existing links/buttons */}
+
+		  <a
+			href="https://www.instagram.com/autoservis.savic?igsh=MWtuODlpamVqZTA4cw%3D%3D&utm_source=qr"
+			target="_blank"
+			rel="noreferrer"
+			aria-label="Instagram"
+			className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 backdrop-blur hover:bg-white/10 transition"
+		  >
+			<Instagram className="h-4.5 w-4.5 text-white/80 group-hover:text-white" />
+		  </a>
+		</div>
         </div>
 
         {/* Mobile hamburger */}
