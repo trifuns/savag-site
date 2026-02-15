@@ -42,21 +42,29 @@ export default function Home() {
 			  <Image
 				src="/brands/vw.svg"
 				alt="Volkswagen"
+				width={140}
+                height={48}
 				className="h-10 md:h-12 w-auto object-contain"
 			  />
 			  <Image
 				src="/brands/audi.svg"
 				alt="Audi"
+				width={140}
+                height={48}
 				className="h-10 md:h-12 w-auto object-contain"
 			  />
 			  <Image
 				src="/brands/seat.svg"
 				alt="SEAT"
+				width={140}
+                height={48}
 				className="h-10 md:h-12 w-auto object-contain"
 			  />
 			  <Image
 				src="/brands/skoda.svg"
 				alt="Škoda"
+				width={140}
+                height={48}
 				className="h-10 md:h-12 w-auto object-contain"
 			  />
 			</div>
