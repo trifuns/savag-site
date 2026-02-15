@@ -5,9 +5,11 @@ const isProd = process.env.NODE_ENV === "production";
 const nextConfig = {
   output: "export",
   images: { unoptimized: true },
-
-  // Helps GitHub Pages routing (optional but recommended)
   trailingSlash: true,
+
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repo}` : "",
+  },
 
   ...(isProd
     ? {

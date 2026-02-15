@@ -3,6 +3,7 @@ import Image from "next/image";
 
 const phoneDisplay = "+382 69 976 007";
 const phoneHref = "tel:+38269976007";
+const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const services = [
   { title: "Redovni servis", desc: "Ulje, filteri, svećice, servisni intervali." },
@@ -39,34 +40,10 @@ export default function Home() {
 		  </h1>
 
 			<div className="mt-5 flex flex-wrap items-center gap-4">
-			  <Image
-				src="/brands/vw.svg"
-				alt="Volkswagen"
-				width={140}
-                height={48}
-				className="h-10 md:h-12 w-auto object-contain"
-			  />
-			  <Image
-				src="/brands/audi.svg"
-				alt="Audi"
-				width={140}
-                height={48}
-				className="h-10 md:h-12 w-auto object-contain"
-			  />
-			  <Image
-				src="/brands/seat.svg"
-				alt="SEAT"
-				width={140}
-                height={48}
-				className="h-10 md:h-12 w-auto object-contain"
-			  />
-			  <Image
-				src="/brands/skoda.svg"
-				alt="Škoda"
-				width={140}
-                height={48}
-				className="h-10 md:h-12 w-auto object-contain"
-			  />
+			  <img src={`${base}/brands/vw.svg`} alt="Volkswagen" className="h-10 md:h-12 w-auto object-contain" />
+			  <img src={`${base}/brands/audi.svg`} alt="Audi" className="h-10 md:h-12 w-auto object-contain" />
+              <img src={`${base}/brands/seat.svg`} alt="SEAT" className="h-10 md:h-12 w-auto object-contain" />
+              <img src={`${base}/brands/skoda.svg`} alt="Škoda" className="h-10 md:h-12 w-auto object-contain" />
 			</div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
