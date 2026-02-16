@@ -9,7 +9,7 @@ export default function Page() {
         <div className="text-xs uppercase tracking-widest text-white/60">Usluge</div>
 
         <h1 className="text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
-          Sistem hlađenja
+          Sistem hlađenja - AC klima
         </h1>
 
         <p className="max-w-3xl text-sm leading-relaxed text-white/70">
