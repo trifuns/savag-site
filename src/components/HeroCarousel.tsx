@@ -4,7 +4,10 @@ import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { usePathname } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+type Locale = "me" | "en";
 
 type Slide = {
   title: string;
@@ -14,42 +17,98 @@ type Slide = {
   cta: string;
 };
 
-export default function HeroCarousel() {
-  const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-  const slides: Slide[] = useMemo(
-    () => [
-	  {
-        title: "Servis i usluge",
-        subtitle: "Pregled najtraženijih usluga i detalji za svaku — brzo i jasno.",
-        href: "/usluge",
-        image: "/hero/usluge.jpg",
-        cta: "Sve usluge",
-      },
-      {
-        title: "Fabrička dijagnostika",
-        subtitle: "VW • Audi • SEAT • Škoda — premium standard servisa u Podgorici.",
-        href: "/fabricka-dijagnostika",
-        image: "/hero/servis-dijagnostika.jpg",
-        cta: "Pogledaj više",
-      },
-      {
-        title: "Topdon Story",
-        subtitle: "Naša priča u kampanji “Share your story” — pogledaj video i detalje.",
-        href: "/novosti/topdon-share-your-story",
-        image: "/hero/topdon-story.jpg",
-        cta: "Pogledaj priču",
-      },
-      {
-        title: "Topdon Master",
-        subtitle: "Profesionalna oprema i procedure za preciznu dijagnostiku i testiranja.",
-        href: "/topdon-master",
-        image: "/hero/topdon-master.jpg",
-        cta: "Saznaj više",
-      },
-    ],
-    []
-  );
+function stripBase(pathname: string) {
+  if (!base) return pathname;
+  return pathname.startsWith(base) ? pathname.slice(base.length) || "/" : pathname;
+}
+
+function detectLocale(pathname: string): Locale {
+  const p = stripBase(pathname);
+  return p === "/en" || p.startsWith("/en/") ? "en" : "me";
+}
+
+function ensureLeadingSlash(path: string) {
+  return path.startsWith("/") ? path : `/${path}`;
+}
+
+function addLocalePrefix(path: string, locale: Locale) {
+  const p = ensureLeadingSlash(path);
+  if (locale === "en") return p === "/" ? "/en" : `/en${p}`;
+  return p;
+}
+
+export default function HeroCarousel() {
+  const pathname = usePathname() || "/";
+  const locale = detectLocale(pathname);
+
+  const slides: Slide[] = useMemo(() => {
+    const dict: Record<Locale, Slide[]> = {
+      me: [
+        {
+          title: "Servis i usluge",
+          subtitle: "Pregled najtraženijih usluga i detalji za svaku — brzo i jasno.",
+          href: "/usluge",
+          image: "/hero/usluge.jpg",
+          cta: "Sve usluge",
+        },
+        {
+          title: "Fabrička dijagnostika",
+          subtitle: "VW • Audi • SEAT • Škoda — premium standard servisa u Podgorici.",
+          href: "/fabricka-dijagnostika",
+          image: "/hero/servis-dijagnostika.jpg",
+          cta: "Pogledaj više",
+        },
+        {
+          title: "Topdon Story",
+          subtitle: "Naša priča u kampanji “Share your story” — pogledaj video i detalje.",
+          href: "/novosti/topdon-share-your-story",
+          image: "/hero/topdon-story.jpg",
+          cta: "Pogledaj priču",
+        },
+        {
+          title: "Topdon Master",
+          subtitle: "Profesionalna oprema i procedure za preciznu dijagnostiku i testiranja.",
+          href: "/topdon-master",
+          image: "/hero/topdon-master.jpg",
+          cta: "Saznaj više",
+        },
+      ],
+      en: [
+        {
+          title: "Service & Repairs",
+          subtitle: "Overview of the most requested services with clear details for each.",
+          href: "/usluge",
+          image: "/hero/usluge.jpg",
+          cta: "All services",
+        },
+        {
+          title: "Factory Diagnostics",
+          subtitle: "VW • Audi • SEAT • Škoda — premium service standard in Podgorica.",
+          href: "/fabricka-dijagnostika",
+          image: "/hero/servis-dijagnostika.jpg",
+          cta: "Learn more",
+        },
+        {
+          title: "Topdon Story",
+          subtitle: "Our story in the “Share your story” campaign — watch the video and read more.",
+          href: "/novosti/topdon-share-your-story",
+          image: "/hero/topdon-story.jpg",
+          cta: "View story",
+        },
+        {
+          title: "Topdon Master",
+          subtitle: "Professional equipment and procedures for precise diagnostics and testing.",
+          href: "/topdon-master",
+          image: "/hero/topdon-master.jpg",
+          cta: "Find out more",
+        },
+      ],
+    };
+
+    return dict[locale];
+  }, [locale]);
 
   // Autoplay: 6s, stop on hover, stop on interaction
   const autoplay = useMemo(
@@ -62,10 +121,7 @@ export default function HeroCarousel() {
     []
   );
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { align: "start", loop: true },
-    [autoplay]
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", loop: true }, [autoplay]);
 
   const [selected, setSelected] = useState(0);
   const [canPrev, setCanPrev] = useState(false);
@@ -103,20 +159,22 @@ export default function HeroCarousel() {
     [emblaApi, autoplay]
   );
 
+  const prevLabel = locale === "en" ? "Previous slide" : "Prethodni slajd";
+  const nextLabel = locale === "en" ? "Next slide" : "Sledeći slajd";
+  const dotLabel = (i: number) => (locale === "en" ? `Go to slide ${i}` : `Idi na slajd ${i}`);
+
   return (
-    // Full-bleed: probija max-w i px-4 parent kontejner
     <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <div ref={emblaRef} className="overflow-hidden bg-black/20">
         <div className="flex">
           {slides.map((s, i) => (
             <Link
               key={i}
-              href={s.href}
+              href={`${base}${addLocalePrefix(s.href, locale)}`}
               className="relative min-w-0 flex-[0_0_100%] overflow-hidden"
               aria-label={s.title}
               onClick={() => autoplay.reset()}
             >
-              {/* Background image */}
               <img
                 src={`${base}${s.image}`}
                 alt=""
@@ -124,11 +182,9 @@ export default function HeroCarousel() {
                 loading={i === 0 ? "eager" : "lazy"}
               />
 
-              {/* Premium overlays */}
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/35 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
 
-              {/* Content in centered container */}
               <div className="absolute inset-0 flex items-end">
                 <div className="mx-auto w-full max-w-6xl px-4 pb-10 md:pb-14">
                   <div className="max-w-2xl">
@@ -149,7 +205,6 @@ export default function HeroCarousel() {
                 </div>
               </div>
 
-              {/* Subtle glow */}
               <div className="pointer-events-none absolute -right-28 -top-28 h-72 w-72 rounded-full bg-brand-red/20 blur-3xl opacity-60" />
             </Link>
           ))}
@@ -163,7 +218,7 @@ export default function HeroCarousel() {
           onClick={scrollPrev}
           disabled={!canPrev}
           className="pointer-events-auto rounded-2xl border border-white/15 bg-black/35 p-2 text-white/85 backdrop-blur-[2px] transition hover:bg-black/45 disabled:opacity-40"
-          aria-label="Prethodni slajd"
+          aria-label={prevLabel}
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
@@ -173,7 +228,7 @@ export default function HeroCarousel() {
           onClick={scrollNext}
           disabled={!canNext}
           className="pointer-events-auto rounded-2xl border border-white/15 bg-black/35 p-2 text-white/85 backdrop-blur-[2px] transition hover:bg-black/45 disabled:opacity-40"
-          aria-label="Sledeći slajd"
+          aria-label={nextLabel}
         >
           <ChevronRight className="h-6 w-6" />
         </button>
@@ -189,7 +244,7 @@ export default function HeroCarousel() {
               "h-2.5 rounded-full border border-white/20 transition",
               selected === i ? "w-8 bg-white/70" : "w-2.5 bg-white/15 hover:bg-white/25",
             ].join(" ")}
-            aria-label={`Idi na slajd ${i + 1}`}
+            aria-label={dotLabel(i + 1)}
           />
         ))}
       </div>
