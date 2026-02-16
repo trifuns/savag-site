@@ -30,19 +30,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Build (Next.js)
+      # Next.js static export (output: "export" in next.config.mjs)
+      # This will generate the static site into the "out/" folder
+      # postbuild runs next-sitemap and writes sitemap.xml + robots.txt into out/
       - name: Build
         run: npm run build
 
-      # Static export to out/
-      - name: Export
-        run: npm run export
-
-      # Ensure GitHub Pages doesn't run Jekyll (important for folders starting with _)
+      # Prevent GitHub Pages from using Jekyll
       - name: Disable Jekyll
         run: touch out/.nojekyll
 
-      # Upload the out/ folder to GitHub Pages
+      # Upload the static site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

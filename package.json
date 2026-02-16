@@ -29,8 +29,10 @@
     "typescript": "^5"
   },
   "scripts": {
+    "dev": "next dev",
     "build": "next build",
-    "export": "next export",
-    "postexport": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "start": "next start",
+    "lint": "eslint"
   }
 }
