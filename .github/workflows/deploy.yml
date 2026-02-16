@@ -30,12 +30,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Build (Next.js)
       - name: Build
         run: npm run build
 
+      # Static export to out/
+      - name: Export
+        run: npm run export
+
+      # Ensure GitHub Pages doesn't run Jekyll (important for folders starting with _)
       - name: Disable Jekyll
         run: touch out/.nojekyll
 
+      # Upload the out/ folder to GitHub Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
